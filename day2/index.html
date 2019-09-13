@@ -1,0 +1,794 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>AAU:Physical Interactive Systems Day 2</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css" id="theme">
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+    <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+</head>
+
+<body>
+    <div class="reveal">
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section data-background="img/background.png">
+                <figure>
+                    <h2 class="intro">AAU:Physical Interactive Systems Day 2</h2 class="intro">
+                    <h2 class="intro">AAU:Physical Interactive Systems Day 2</h2 class="intro">
+                    <h2 class="intro">AAU:Physical Interactive Systems Day 2</h2 class="intro">
+                    <h2 class="intro">AAU:Physical Interactive Systems Day 2</h2 class="intro">
+                </figure>
+            </section>
+
+            <section data-background="img/background.png" data-background-transition="zoom">
+                <p><b>Slides are here: <br>https://mhellar.github.io/saam_mcu/day1</b></p>
+                <br>
+                <p><b><br><a href="https://bit.ly/2CZyhwl">Grab
+                            the
+                            code here: https://bit.ly/2CZyhwl
+                        </a></b></p>
+            </section>
+
+
+            <section>
+                <ul>
+                    <h3>Topics for Today:</h3>
+                    <li class="fragment">Getting to a known good state</li>
+                    <li class="fragment">Digital Output Review</li>
+                    <li class="fragment">Digital Input</li>
+                    <li class="fragment">Brainstorming for the mideterm</li>
+                    <li class="fragment">Analog Input and Output</li>
+                    <li class="fragment">Introduction to serial communication</li>
+                    <li class="fragment">Controlling motion with servos and stepper motors</li>
+                    <li class="fragment">Case study: RV (Room Vehicle) PROTOTYPE, Greg Lynn</li>
+                </ul>
+            </section>
+            <section>
+
+                <h4>Getting to a known good state: BLINKING AN LED</h4>
+                <img src="img/blink.png" height="600"><br>
+
+            </section>
+            <section>
+                <h4>Parts List:</h4>
+                <ul>
+                    <li>1 long green wire</li>
+                    <li>1 long yellow wire</li>
+                    <li>1 Led(your choice of color)</li>
+                    <li>1 resistor (bands are red,red,violet, gold)</li>
+                    <li>1 Breadboard</li>
+                    <li>1 Arduino and USB cable</li>
+                    <li>*Most of the parts from exercise 1</li>
+                </ul>
+            </section>
+
+            <section>
+
+                <h4>1 Connect GND on the arduino to the ground terminal on the breadboard</h4>
+                <img src="img/2s1.png" height="400"><br>
+
+
+            </section>
+            <section>
+                <img src="img/2s2.png" height="400"><br>
+                <h4>2 Connect <i>Pin 13</i> on the to the same row as the long lead of the LED on the breadboard</h4>
+            </section>
+
+            <section>
+
+
+                <img src="img/2s3.png" height="400"><br>
+                <h4>3 Make a connection between the ground strip and the short lead of the LED</h4>
+
+
+            </section>
+            <section>
+
+                <p>Once the LED is connected, you need to tell Arduino what to do. This is done through code - that is,
+                    a
+                    list of instructions that we give the micro- controller to make it do what we want.</p>
+            </section>
+            <section>
+                <h4>THE ARDUINO IDE</h4>
+                <img src="img/ardide.png" height="500"><br>
+                <p>Open the Arduino IDE from the Applications folder.</p>
+            </section>
+
+            <section>
+                <h4>THE ARDUINO IDE</h4>
+                <img src="img/b1.png" height="500"><br>
+
+            </section>
+
+            <section>
+                <h3>Blink Code</h3>
+                <pre><code class="hljs" data-trim contenteditable width>
+
+// Example 01 : Blinking LED
+int LED = 13; // LED connected to digital pin 13
+
+void setup()
+{
+pinMode(LED, OUTPUT); // sets the digital
+// pin as output
+}
+
+void loop()
+{
+digitalWrite(LED, HIGH); // turns the LED on
+delay(1000); // waits for a second
+digitalWrite(LED, LOW); // turns the LED off
+delay(1000); // waits for a second
+}
+                    
+                    </code></pre>
+            </section>
+            <section>
+                <h4>USING ARDUINO</h4>
+                <img src="img/proc.png" height="400"><br>
+                <ul>
+                    <li>Write your sketch</li>
+                    <li>Press Compile button (to check for errors)
+                    </li>
+                    <li>Press Upload button to program Arduino board with your sketch</li>
+                </ul>
+            </section>
+
+            <!-- <section>
+                <h4>CODE:STEP BY STEP</h4>
+
+                <p>Arduino expects two functions to exists—one called
+                    <b>setup()</b> and one called <b>loop()</b>.
+                    <br><br>
+                    <b>setup()</b> is where you put all the code that you want to execute once at the beginning of your
+                    program
+                    <br><br>
+                    <b>loop()</b> contains the core of your program, which is executed over and over again.
+                    <br><br> When you power up the board, the code runs; when you want to stop, you just turn it off.</p>
+            </section>
+
+            <section>
+                <p><b>// Example 01 : Blinking LED()</b><br> A comment is a useful way for us to write little notes.
+                    The
+                    preceding title comment just reminds us that this program, Example 01, blinks an LED.</p>
+            </section>
+            <section>
+                <p><b>void setup()</b><br> This line tells Arduino that the next function will be called setup().</p>
+            </section>
+            <section>
+                <b>{</b> With this opening curly bracket, a block of code begins.
+                <br><br>
+                <b>pinMode(LED, OUTPUT); // sets the digital // pin as output</b>
+                <br><br> pinMode tells Arduino how to configure a certain pin. Digital pins can be used either as INPUT
+                or
+                OUTPUT.
+                <br><br> In this case, we need an output pin to control our LED, so we place the number of the pin and
+                its
+                mode inside the parentheses.
+                <br><br> pinMode is a function, and the words (or numbers) specified inside the parentheses are
+                arguments.
+                INPUT and OUTPUT are constants in the Arduino language.
+                <b>}</b>
+                </p>
+            </section>
+
+            <section>
+                <b>void loop() {
+                    <br><br> loop()
+                </b> is where you specify the main behavior of your interactive device. It will be repeated over and
+                over
+                again until you switch the board off.</b>
+                </p>
+            </section>
+
+            <section>
+                <p>
+                    <b>digitalWrite(LED, HIGH); // turns the LED on</b>
+                    <br><br> As the comment says, digitalWrite() is able to turn on (or off) any pin that has been
+                    configured
+                    as an OUTPUT.
+                    <br><br> The first argument (in this case, LED) specifies which pin should be turned on or off
+                    (remember
+                    that LED is a constant value that refers to pin 13, so this is the pin that’s switched).
+                    <br><br> The second argument can turn the pin on (HIGH) or off (LOW).</b>
+                </p>
+            </section>
+
+            <section>
+                <p>
+                    Imagine that every output pin is a tiny power socket, like the ones you have on the walls of your
+                    apartment. American ones
+                    are 110 V, and Arduino works at a more modest 5 V.
+                    <br><br> The magic here is when software becomes hardware. When you write digitalWrite(LED, HIGH),
+                    it
+                    turns the output pin to 5 V, and if you connect an LED, it will light up.
+                    <br><br> So at this point in your code, an instruction in software makes something happen in the
+                    physical
+                    world by controlling the flow of electricity to the pin. Turning on and off the pin at will now let
+                    us
+                    translate these into something more visible for a human being; the LED is our actuator</p>
+            </section>
+
+            <section>
+                <p>
+                    <b>delay(1000); // wait for a second</b><br><br> Arduino has a very basic structure. Therefore, if
+                    you
+                    want things to happen with a certain regularity, you tell it to sit quietly and do nothing until it
+                    is
+                    time to go to the next step. delay() basically makes the processor sit there and do nothing for the
+                    amount
+                    of milliseconds that you pass as an argument. Milliseconds are thousands of seconds; therefore,
+                    1000
+                    milliseconds equals 1 second. So the LED stays on for one second here.
+
+            </section>
+
+            <section>
+                <p>
+                    <b>digitalWrite(LED, LOW); // turns the LED off</b><br><br> This instruction now turns off the LED
+                    that
+                    we previously turned on. Why do we use HIGH and LOW? Well, it’s an old convention in digital
+                    electronics.
+                    HIGH means that the pin is on, and in the case of Arduino, it will be set at 5 V. LOW means 0 V.
+                    You
+                    can also replace these arguments mentally with ON and OFF.
+
+            </section>
+
+            <section>
+                <p>
+                    <b>delay(1000); // wait for a second</b><br><br> Here, we delay for another second. The LED will be
+                    off
+                    for one second.
+                    <br><br>
+                    <b>}</b><br> This closing curly bracket marks end of the loop function.
+                </p>
+            </section>
+
+            <section>
+                <h3>Random Blink</h3>
+                <pre><code class="hljs" data-trim contenteditable width>
+
+//Random Delay
+//
+int LED = 13; // LED connected to// digital pin 13
+int i; // Variable to hold our random value
+void setup()
+{
+pinMode(LED, OUTPUT); // sets the digital pin as
+output
+}
+void loop()
+{
+i = random(1, 1000); // generate a random value every
+loop cycle
+digitalWrite(LED, HIGH); // turns the LED on
+delay(i); // pause for the duration of variable i
+digitalWrite(LED, LOW); // turns the LED off
+delay(i); // waits for a second the duration of
+variable i
+}
+                    
+                    </code></pre>
+            </section>
+
+            <section>
+                <h3>ITERATIVE DELAY</h3>
+                <pre><code class="hljs" data-trim contenteditable width>
+
+/// Blink with for loop
+//
+int LED = 13; // LED connected to digital pin 13
+int i; // Variable to hold our random value
+void setup()
+{
+pinMode(LED, OUTPUT); // sets the digital
+// pin as output
+}
+void loop()
+{
+// set I to 1; while i is less that 100 increment i by one
+for(int i = 1;i <=100; i++){
+digitalWrite(LED, HIGH); // turns the LED on
+delay(i); // set delay based on the value of i
+digitalWrite(LED, LOW); // turns the LED off
+delay(i); // set delay based on the value of i
+}
+}
+                    
+                    </code></pre>
+            </section>
+
+
+            <section>
+                <h4>Knight Rider</h4>
+                <img src="img/knight.png" height="600"><br>
+
+            </section>
+            <section>
+                <h4>Knight Rider</h4>
+                <iframe width="420" height="315" src="https://www.youtube.com/embed/Mo8Qls0HnWo" frameborder="0"
+                    allowfullscreen></iframe>
+            </section>
+
+            <section>
+                <h4>Parts List:</h4>
+                <ul>
+                    <li>Solderless Breadboard</li>
+                    <li>13 x Flexible Wire Jumpers</li>
+                    <li>6 x LEDs (any color)</li>
+                    <li>6 x 220 Ohm Resistors</li>
+                    <li>Arduino Duo board</li>
+                    <li>1 Arduino and USB cable</li>
+                </ul>
+            </section>
+
+            <section>
+                <h4>Knight Rider</h4>
+                <img src="img/knight.png" height="600"><br>
+
+            </section> -->
+
+            <section>
+                <iframe src="https://player.vimeo.com/video/44480836" width="1000" height="562" frameborder="0"
+                    webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            </section>
+            <section>
+                Brainstorming for the midterm
+            </section>
+
+            <section>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/RG5Fi-eCLbc" frameborder="0"
+                    allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </section>
+            <!-- <section>
+                <iframe src="https://player.vimeo.com/video/121878247" width="640" height="360" frameborder="0"
+                    webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                <p><a href="https://vimeo.com/121878247">Storytelling through playful interactions</a> from <a
+                        href="https://vimeo.com/user6105181">Dalziel
+                        &amp; Pow</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+            </section>
+
+            <section>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/59MenN1W8F8" frameborder="0"
+                    allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </section>
+
+            <section>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/BZathxFXtBw" frameborder="0"
+                    allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </section>
+            <section>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/VuF5JwYPM9s" frameborder="0"
+                    allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </section>
+            <section>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/71BSZtxlVhQ" frameborder="0"
+                    allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </section> -->
+            <section>
+                Let's work in pairs of 2 today.
+            </section>
+
+            <section>
+                <h3>Digital Input</h3>
+                <img src="img/digiin.png" height="500">
+                <br>
+                <a href="#" class="navigate-down">
+                </a>
+            </section>
+
+            <section>
+                <h3>Parts for this project:</h3>
+                <ul>
+                    <li>Solderless Breadboard</li>
+                    <li>7 x Flexible Wire Jumpers - 1 x LEDs (any color)</li>
+                    <li>2 x 220 Ohm Resistors</li>
+                    <li>1 xTactile Pushbutton</li>
+                    <li>Arduino Duo board</li>
+                    <li>USB Cable</li>
+                </ul>
+            </section>
+            <section>
+                <img src="img/digiin1.png" height="600">
+            </section>
+            <section>
+                <img src="img/digiin2.png" height="600">
+            </section>
+            <section>
+                <p>Button.ino</p>
+                <img src="img/digiin3.png" height="600">
+            </section>
+            <section>
+                <img src="img/digiin4.png" height="600">
+            </section>
+            <section>
+                <img src="img/Pull-down-Resistor.jpg" height="600">
+            </section>
+            <section>
+                <a href="https://www.arduino.cc/reference/en/language/functions/digital-io/pinmode/">Pinmode</a>
+            </section>
+            <section>
+                <img src="img/digiin5.png" height="600">
+            </section>
+            <section>
+                <img src="img/digiin6.png" height="600">
+            </section>
+
+            <section>
+                <a
+                    href="https://www.arduino.cc/reference/en/language/functions/analog-io/analogwrite/">analogWrite()</a>
+            </section>
+
+            <section>
+                Pulse Width Modulation, or PWM, is a technique for getting analog results with digital means. Digital
+                control is used to
+                create a square wave, a signal switched between on and off. This on-off pattern can simulate voltages
+                in
+                between full on (5 Volts) and off (0 Volts) by changing the portion of the time the signal spends on
+                versus
+                the time that the signal spends off. The duration of "on time" is called the pulse width.
+            </section>
+            <section>
+                In the graphic below, the green lines represent a regular time period. This duration or period is the
+                inverse of the PWM
+                frequency. In other words, with Arduino's PWM frequency at about 500Hz, the green lines would
+                measure 2
+                milliseconds
+                each. A call to analogWrite() is on a scale of 0 - 255, such that analogWrite(255) requests a 100% duty
+                cycle
+                (always on), and analogWrite(127) is a 50% duty cycle (on half the time) for example.
+                <br><img src="img/pwm2.png" height="300">
+            </section>
+
+            </section>
+            <section>
+                <h3>Analog Input</h3>
+                <img src="img/analog1.png" height="500">
+                <br>
+                <a href="#" class="navigate-down">
+                </a>
+            </section>
+            <section>
+                <h3>Parts for this project:</h3>
+                <ul>
+                    <li>Solderless Breadboard</li>
+                    <li>8 x Flexible Wire Jumpers</li>
+                    <li>1 x RGB LED</li>
+                    <li>3 x 220 Ohm Resistors</li>
+                    <li>1 x Blue Potentiometer with white knob</li>
+                    <li>Arduino Duo board</li>
+                    <li>USB Cable</li>
+                </ul>
+            </section>
+            <section>
+                <h2>The Potentiometer</h2>
+                <img src="img/pot.png" height="450">
+            </section>
+            <section>
+                <h3>The Circuit</h3>
+                <img src="img/analog1.png" height="600">
+            </section>
+            <section>
+                <img src="img/analog1.png" height="500">
+                <ul>
+                    <li>Connect 5V and GND to the side strips</li>
+                    <li>Connect the short leads of the LED to pins 9,10,11 in series with a resistor.</li>
+                </ul>
+            </section>
+            <section>
+                <table>
+                    <tr>
+                        <img src="img/analog1.png" height="450">
+                    </tr>
+                    <tr>
+                        <ul>
+                            <li>Connect the Potentiometer across 3 rows</li>
+                            <li>One side goes to ground.</li>
+                            <li>The other goes to +5V</li>
+                            <li>The Center Pin Connects to analog in 0 (Marked A0)</li>
+                        </ul>
+                    </tr>
+                </table>
+            </section>
+            <section data-background="img/72-points-mesh.svg" data-background-repeat="repeat"
+                data-background-size="100px" data-background-transition="zoom">
+                <h2 class="intro">Upload 'RBG_Pot.ino'</h2>
+            </section>
+            <section>
+                How do we know the value of the potentiometer?
+                <img src="img/serRead.png" height="500">
+                <a href="#" class="navigate-down">
+                </a>
+            </section>
+            <section>
+                The word serial means "one after the other." For example, a serial killer doesn't stop with one murder,
+                but stabs many people one after the other. Serial data transfer is when we transfer data one bit at a
+                time, one right after the other.
+            </section>
+            <section>
+                Information is passed back & forth between the computer and Arduino by, essentially, setting a pin high
+                or low. Just like we used that technique to turn an LED on and off, we can also send data. One side
+                sets the pin and the other reads it. It's a little like Morse code, where you can use dits and dahs to
+                send messages by telegram. In this case, instead of a long cable, its only a few feet.
+            </section>
+            <section>
+                The baud rate is the rate at which information is transferred in a communication channel. In the serial
+                port context, "9600 baud" means that the serial port is capable of transferring a maximum of 9600 bits
+                per second.
+            </section>
+            <section>
+                <img src="img/ascii_bin.png" height="500">
+            </section>
+            <section>
+                <img src="img/aic17.png" height="500">
+            </section>
+            <section>
+                <img src="img/tty_rs.jpg" height="200"><img src="img/extron.jpeg" height="200"><br>
+                <a href="https://bit.ly/2Nm4rG4">video</a>
+            </section>
+            <section data-background="img/72-points-mesh.svg" data-background-repeat="repeat"
+                data-background-size="100px" data-background-transition="zoom">
+                <h2 class="intro">Upload 'SerialMath.ino'</h2>
+            </section>
+            <section>
+                <code>
+                    <pre>
+int a = 5;
+int b = 10;
+int c = 20;
+
+void setup()                    // run once, when the sketch starts
+{
+  Serial.begin(9600);           // set up Serial library at 9600 bps
+  Serial.println("Here is some math: ");
+
+  Serial.print("a = ");
+  Serial.println(a);
+  Serial.print("b = ");
+  Serial.println(b);
+  Serial.print("c = ");
+  Serial.println(c);
+  Serial.print("a + b = ");       // add
+  Serial.println(a + b);
+  Serial.print("a * c = ");       // multiply
+  Serial.println(a * c);
+  Serial.print("c / b = ");       // divide
+  Serial.println(c / b);
+  Serial.print("b - c = ");       // subtract
+  Serial.println(b - c);
+}
+
+void loop()                     // we need this to be here even though its empty
+{
+}
+                
+            </code>
+                </pre>
+            </section>
+            <section data-background="img/72-points-mesh.svg" data-background-repeat="repeat"
+                data-background-size="100px" data-background-transition="zoom">
+                <h3 class="intro">WE can send Serial data as well</h3><br>
+                <h2 class="intro">Upload PhysicalPixel.ino</h2>
+            </section>
+            <section>
+                <code>
+                    <pre>
+
+const int redPin = 9; // the pin that the LED is attached to
+const int bluePin = 10; // the pin that the LED is attached to
+const int greenPin = 11; // the pin that the LED is attached to
+int incomingByte;      // a variable to read incoming serial data into
+
+void setup() {
+  // initialize serial communication:
+  Serial.begin(9600);
+  // initialize the LED pin as an output:
+  pinMode(redPin, OUTPUT);
+  pinMode(bluePin, OUTPUT);
+  pinMode(greenPin, OUTPUT);
+}
+
+void loop() {
+  // see if there's incoming serial data:
+  if (Serial.available() > 0) {
+    // read the oldest byte in the serial buffer:
+    incomingByte = Serial.read();
+    // if it's a r , turn on the red LED:
+    if (incomingByte == 'r') {
+      digitalWrite(greenPin, LOW);
+      digitalWrite(bluePin, LOW);
+      digitalWrite(redPin, HIGH);
+    }
+    // if it's a g , turn on the green LED:
+    if (incomingByte == 'g') {
+      digitalWrite(greenPin, HIGH);
+      digitalWrite(bluePin, LOW);
+      digitalWrite(redPin, LOW);
+    }
+    / if it's a b , turn on the blue LED:
+    if (incomingByte == 'b') {
+      digitalWrite(greenPin, LOW);
+      digitalWrite(bluePin, HIGH);
+      digitalWrite(redPin, LOW);
+    }
+  }
+}
+</code>
+                </pre>
+
+            </section>
+            <section>
+                <h2>Controlling a Servo</h2>
+                <img src="img/servo.png" height="500">
+                <a href="#" class="navigate-down">
+                </a>
+            </section>
+            <section>
+                A Servo is a small device that has an output shaft. This shaft can be positioned to specific angular
+                positions by sending the servo a coded signal. As long as the coded signal exists on the input line,
+                the servo will maintain the angular position of the shaft. As the coded signal changes, the angular
+                position of the shaft changes. In practice, servos are used in radio controlled airplanes to position
+                control surfaces like the elevators and rudders. They are also used in radio controlled cars, puppets,
+                and of course, robots.
+            </section>
+            <section data-background="img/72-points-mesh.svg" data-background-repeat="repeat"
+                data-background-size="100px" data-background-transition="zoom">
+                <h2>Servo_Sweep.ino</h2>
+                <pre><code>
+    #include <Servo.h>
+    Servo myservo; // create servo object to control a servo
+    // a maximum of eight servo objects can be created
+    int pos = 0; // variable to store the servo position
+    
+    void setup() {
+    myservo.attach(9); // attaches the servo on pin 9 to the servo object }
+    
+    void loop() {
+    for(pos = 0; pos < 180; pos += 1) // goes from 0 degrees to 180 degrees
+    }
+    { myservo.write(pos); delay(15);
+    // in steps of 1 degree
+    // tell servo to go to position in variable 'pos'
+    // waits 15ms for the servo to reach the position
+    }
+    for(pos = 180; pos>=1; pos-=1) // goes from 180 degrees to 0 degrees 
+    {
+    myservo.write(pos); // tell servo to go to position in variable 'pos'
+    delay(15); // waits 15ms for the servo to reach the position 
+    }
+    </code></pre>
+            </section>
+            <section>
+                <h3>Servo With Potentiometer</h3>
+                <img src="img/servo_w_pot.png" height="600">
+            </section>
+            <section>
+                <h3 class="intro">Upload SERVO_KNOB.INO</h3>
+            </section>
+            <section>
+                <h3 class="intro">try SerialServoControl</h3>
+            </section>
+
+            <section>
+                <p>Stepper Motors</p>
+                <img src="img/components_StepperMotor.gif">
+            </section>
+            <section>
+                Stepper motors are DC motors that move in discrete steps. They have multiple coils that are organized
+                in groups called "phases". By energizing each phase in sequence, the motor will rotate, one step at a
+                time.
+
+                With a computer controlled stepping you can achieve very precise positioning and/or speed control. For
+                this reason, stepper motors are the motor of choice for many precision motion control applications.
+            </section>
+            <section>
+                <p>Stepper Motors</p>
+                <img src="img/step_table.jpg">
+            </section>
+            <section>
+                <p>Stepper Motors</p>
+                <img src="img/28byj48.png">
+            </section>
+            <section data-background="img/72-points-mesh.svg" data-background-repeat="repeat"
+                data-background-size="100px" data-background-transition="zoom">
+                <h2 class="intro">Upload 'Stepper.ino'</h2>
+            </section>
+            <section data-background="img/72-points-mesh.svg" data-background-repeat="repeat"
+                data-background-size="100px" data-background-transition="zoom">
+                Let's play with the code
+            </section>
+            <section>
+                <p>Worth a look</p>
+                <a href="https://github.com/waspinator/AccelStepper">Accelstepper</a>
+            </section>
+            <section>
+                Case Study: Greg Lynn, RV Prototype
+            </section>
+            <section>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/fUXg0CN5O-Y" frameborder="0"
+                    allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </section>
+            <section>
+                <img src="img/gl1.png">
+            </section>
+            <section>
+                <img src="img/gl2.png" height="500">
+            </section>
+            <section>
+                <img src="img/gl3.png">
+            </section>
+            <section>
+                National Electrical Manufacturers Association(NEMA) Standard Steppers<br>
+                <img src="img/nema.jpg">
+            </section>
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'convex', // none/fade/slide/convex/concave/zoom
+
+            // Optional reveal.js plugins
+            dependencies: [{
+                src: 'lib/js/classList.js',
+                condition: function () {
+                    return !document.body.classList;
+                }
+            }, {
+                src: 'plugin/markdown/marked.js',
+                condition: function () {
+                    return !!document.querySelector('[data-markdown]');
+                }
+            }, {
+                src: 'plugin/markdown/markdown.js',
+                condition: function () {
+                    return !!document.querySelector('[data-markdown]');
+                }
+            }, {
+                src: 'plugin/highlight/highlight.js',
+                async: true,
+                condition: function () {
+                    return !!document.querySelector('pre code');
+                },
+                callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
+            }, {
+                src: 'plugin/zoom-js/zoom.js',
+                async: true
+            }, {
+                src: 'plugin/notes/notes.js',
+                async: true
+            }]
+        });
+    </script>
+</body>
+
+</html>
