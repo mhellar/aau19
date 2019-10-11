@@ -362,6 +362,86 @@ console.log("Server running at http://localhost:8000/");
                 <h4>We will cover this last program more in depth next week</h4>
                 </a>
             </section>
+            <section>
+                A simple BART Program
+            </section>
+            <section>
+                <ul>
+                    <li>Make a new directory somehwere called BARTPredict.</li>
+                    <li class="fragment">Open The terminal and CD into that directory</li>
+                    <li class="fragment">Drag the folder on to you preferred text editor</li>
+                </ul>
+            </section>
+            <section>
+                <ul>
+                    <li>In the Terminal type 'npm init'</li>
+                    <li class="fragment">Answer the questions</li>
+                    <li class="fragment">then type 'npm install bart --save</li>
+                </ul>
+            </section>
+            <section>
+                <h3>make a new file 'index.js'</h3>
+                <pre><code class="hljs" data-trim contenteditable width>
+var bart = require('bart').createClient({ "interval": 3000 });
+
+bart.on('dbrk', function(estimates) {
+    console.log(estimates);
+});
+                </code></pre>
+                <a href="https://www.npmjs.com/package/bart">https://www.npmjs.com/package/bart</a>
+            </section>
+            <section>
+                The Bart Module returned something called Javascript Object Notation(JSON)<br> We can easily examine
+                that here:
+                <a href="http://jsonviewer.stack.hu/">http://jsonviewer.stack.hu/</a>
+            </section>
+
+            <section>
+                <h3>make a new file 'index.js'</h3>
+                <pre><code class="hljs" data-trim contenteditable width>
+var bart = require('bart').createClient({ "interval": 3000 });
+
+bart.on('dbrk', function(estimates) {
+    // console.log(estimates);
+    console.log("next train is headed " + estimates[0].direction + " in " + estimates[0].minutes + " destination is " + estimates[0].destination);
+});
+                </code></pre>
+                <a href="https://www.npmjs.com/package/bart">https://www.npmjs.com/package/bart</a>
+            </section>
+            <section data-background-image="img/johnny-five-fb.png">
+            </section>
+
+            <section>
+                <a href="http://johnny-five.io/">http://johnny-five.io/</a>
+            </section>
+
+            <section>
+                To use Johnny-Five we need to install Firmata on to our Arduino
+                File->Examples->Firmata->StandardFirmata<br> Firmata is a generic protocol for communicating with
+                microcontrollers from software on a host computer. It is intended to work
+                with any host computer software package.
+            </section>
+
+            <section>
+                <a href="http://johnny-five.io/api/lcd">http://johnny-five.io/api/lcd/</a>
+            </section>
+            <section>
+                Lets try the LCD control example<br> CD into the j5_lcd folder from the terminal
+            </section>
+            <section>
+                Lets try the LCD control example<br> CD into the j5_lcd folder from the terminal<br> type 'npm install'<br>
+                run 'node app.js'<br> run 'node app2.js'
+            </section>
+            <section>
+                Lets try the LCD Bart example<br> CD into the j5_lcd_bart folder from the terminal<br> type 'npm
+                install'<br> run 'node app.js'
+            </section>
+            <section>
+                Lets try the LCD Weather example<br> CD into the j5_lcd_weather folder from the terminal<br> type 'npm
+                install'<br> run 'node app.js'
+            </section>
+
+
         </div>
     </div>
     <script src="lib/js/head.min.js"></script>
