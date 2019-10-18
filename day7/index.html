@@ -1,0 +1,488 @@
+<head>
+    <meta charset="utf-8">
+    <title> Interactive Physical Systems: Week 7</title>
+    <meta name="description" content="NodeJS Class 2">
+    <meta name="author" content="Mark Hellar">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/league.css" id="theme">
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+    <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+</head>
+
+<body>
+    <div class="reveal">
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section data-background="img/72-points-mesh.svg" data-background-repeat="repeat" data-background-size="100px"
+                data-background-transition="zoom">
+                <figure>
+                    <h2 class="intro">Interactive Physical Systems: Week 7</h2 class="intro">
+                </figure>
+            </section>
+            <section data-background="img/72-points-mesh.svg" data-background-repeat="repeat" data-background-size="80px"
+            data-background-transition="zoom">
+            <ul>
+                <h3>Topics for This Week:</h3>
+                <li class="fragment">Tinkercad</li>
+                <li class="fragment">More NodeJS</li>
+                <li class="fragment">Connect an LCD to the Bart API</li>
+                <li class="fragment">Introdcution to Communication Protocols</li>
+            </ul>
+        </section>
+        <section>
+            <a href="https://www.tinkercad.com/">https://www.tinkercad.com/</a>
+        </section>
+            <section>
+                <img src="img/nodejs.png">
+            </section>
+
+                <section>
+                    <h3>Code is here:</h3>
+                    <br>
+                    <a href="http://bit.ly/2eWU4DL">http://bit.ly/2eWU4DL</a>
+                    <br>
+                </section>
+                <section>
+                    <h3>Predicting Bart</h3>
+                    <img src="img/bart_train.jpg" height="500">
+                    <a href="#" class="navigate-down">
+                    </a>
+                </section>
+                <section data-background="img/72-points-mesh.svg" data-background-repeat="repeat" data-background-size="100px" data-background-transition="zoom">
+                    <h2 class="intro">From the terminal:</h2>
+                    <br>
+                    <h2 class="intro">'cd bartpredict'</h2>
+                    <br>
+                    <h2 class="intro">'npm install'</h2>
+                    <br>
+                    <h2 class="intro">'node app.js'</h2>
+                </section>
+                <section data-background="img/72-points-mesh.svg" data-background-repeat="repeat" data-background-size="100px" data-background-transition="zoom">
+                    <h2 class="intro"><a href="http://www.bart.gov/schedules/developers/api">Bart API</a></h2>
+                </section>
+                <section>
+                    <h3>
+                        Building out a basic web application with express.
+                    </h3>
+                    <a href="#" class="navigate-down">
+                    </a>
+                </section>
+                <section>
+                    <p>
+                        Express.js is a Node.js web application server framework, designed for building single-page, multi-page, and hybrid web applications. It is the de facto standard server framework for node.js
+                    </p>
+                </section>
+                <section>
+                    <a href="http://expressjs.com/">Express</a>
+                </section>
+                <section>
+                    <p>Hello World</p>
+                    <pre><code>
+var express = require('express');
+var app = express();
+
+app.get('/', function (req, res) {
+  res.send('Hello World!');
+});
+
+app.listen(3000, function () {
+  console.log('Example app listening on port 3000!');
+});
+  </code></pre>
+                    <p>req is an object containing information about the HTTP request that raised the event. In response to req, you use res to send back the desired HTTP response.</p>
+                </section>
+                <section>
+                    <a href="https://expressjs.com/en/guide/routing.html">Express routes</a>
+                </section>
+
+                <section>
+                    <p>We can also serve files:</p>
+                    <ul>
+                        <li>Make a new folder called webserver</li>
+                        <li class="fragment">Open the terminal and type 'cd' + SPACE + drag folder onto the terminal</li>
+                        <li class="fragment">Type 'npm init'</li>
+                        <li class="fragment">Fill out the questions</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Install Express</h3>
+                    <h3>Type: sudo npm install --express</h3>
+                </section>
+                <section>
+                    <ul>
+                        <li>Create a new file in Sublime</li>
+                        <li class="fragment">Enter the code below:</li>
+                        <li class="fragment">Save as 'index.js' in your new folder</li>
+                    </ul>
+                    <pre><code class="hljs" data-trim contenteditable width>
+//import express 
+var express = require('express');
+//create express object named app
+var app = express();
+
+//instantiate a server on port 3030
+var server = app.listen(3030);
+
+//expose the local public folder for inluding files js, css etc..
+app.use(express.static('public'));
+
+//on a request to / serve index.html
+app.get('/', function(req, res) {
+    res.sendFile(__dirname + '/index.html');
+});
+                    </code></pre>
+                </section>
+                <section>
+                    <ul>
+                        <li>Create a new file in Sublime</li>
+                        <li class="fragment">Enter the code below without the comments:</li>
+                        <li class="fragment">Save as 'index.html' in your new folder</li>
+                    </ul>
+<img src="img/basic_html.png" height="400">
+                </section>
+                <section>
+                    <h3>Open http://localhost:3030/ in the browser</h3>
+                </section>
+                <section>
+                    <h3>Takes a few minutes to add some html to the page</h3>
+                </section>
+            </section>
+            <section>
+                <h3>Nodemon is a handy tool</h3>
+                <p>sudo npm install -g nodemon</p>
+                <p>use nodemon in place of node and your app will restart anytime you save a change.</p>
+            </section>
+            <section>
+                <p>Websockets:</p>
+                <p>HTML5 WebSocket represents the first major upgrade in the history of web communications. Before WebSocket, all communication between web clients and servers relied only on HTTP. Now, dynamic data can flow freely over WebSocket connections
+                    that are persistent (always on), full duplex (simultaneously bi-directional) and blazingly fast.</p>
+            </section>
+            <section>
+                <h3>Socket.io</h3>
+                <p>Socket.IO enables real-time bidirectional event-based communication.</p>
+                <p><a href="http://socket.io/">http://socket.io/</a></p>
+            </section>
+            <section>
+                <h3>CD to websocket_simple</h3>
+                <p>npm Install</p>
+                <p>node app.js</p>
+            </section>
+            <section data-background="img/72-points-mesh.svg" data-background-repeat="repeat" data-background-size="100px" data-background-transition="zoom">
+                <h2 class="intro">From the terminal:</h2>
+                <br>
+                <h2 class="intro">'cd bart'</h2>
+                <br>
+                <h2 class="intro">'npm install'</h2>
+                <br>
+                <h2 class="intro">'node app.js'</h2>
+            </section>
+            <section data-background="img/johnny-five-fb.png" data-background-transition="zoom">
+            </section>
+            <section data-background="img/sc_poster.jpg" data-background-size="600px" data-background-transition="zoom">
+            </section>
+            <section>
+                <p>
+                    Johnny-Five is the original JavaScript Robotics programming framework. Released by Bocoup in 2012, Johnny-Five is maintained by a community of passionate software developers and hardware engineers. Over 75 developers have made contributions towards building
+                    a robust, extensible and composable ecosystem.
+                </p>
+            </section>
+            <section data-background="img/led_1.png" data-background-size="1000px" data-background-transition="zoom">
+            </section>
+            <section>
+                <h3>Starting a new Node app</h3>
+                <ul>
+                    <li>Create a new folder named, 'J5_led_1'</li>
+                    <li class="fragment">Open the terminal</li>
+                    <li class="fragment">type 'cd' & space</li>
+                    <li class="fragment">drag your folder to the terminal and hit return</li>
+                </ul>
+            </section>
+            <section>
+
+                <ul>
+                    <li>Now we are in our new folder in the terminal</li>
+                    <li class="fragment">Type 'npm init' & hit return</li>
+                    <li class="fragment">fill out the questions</li>
+                    <li class="fragment">drag your folder onto Sublime Text</li>
+                </ul>
+            </section>
+            <section>
+                <ul>
+                    <li>type 'npm install johnny-five --save</li>
+                    <li class="fragment">Have a look at the package.json file that was generated</li>
+                    <li class="fragment">This stores metadata about our app</li>
+                </ul>
+            </section>
+
+            <section>
+                <b><p>contents of package.json</p></b></br>
+                <code class="hljs" data-trim contenteditable><pre>
+{
+  "name": "J5_led_1",
+  "version": "1.0.0",
+  "description": "A Johnny Five LED app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "johnny-five": "^0.8.106"
+  }
+}
+</pre>
+                        </code>
+            </section>
+
+            <section>
+                <h3>create a new file, enter the following code and save as index.js in your new folder</h3>
+                <code class="hljs" data-trim contenteditable><pre>
+var five = require("johnny-five");
+var board = new five.Board();
+
+board.on("ready", function() {
+  var led = new five.Led(6);
+  led.blink(500);
+});
+</pre>
+                        </code>
+            </section>
+            <section>
+                <ul>
+                    <li>Upload firmata to arduino</li>
+                    <li class="fragment">run 'node index.js' at the terminal</li>
+                </ul>
+            </section>
+            <section>
+                <h3>try a pulse</h3>
+                <code class="hljs" data-trim contenteditable><pre>
+var five = require("johnny-five");
+var board = new five.Board();
+
+board.on("ready", function() {
+  var led = new five.Led(6);
+led.pulse(500);
+});
+</pre>
+                        </code>
+            </section>
+            <section>
+                <b><p>Led Animations</p></b></br>
+                <code class="hljs" data-trim contenteditable><pre>
+var five = require("johnny-five");
+var board = new five.Board();
+
+board.on("ready", function() {
+  var led = new five.Led(6);
+led.pulse({
+  easing: "linear",
+  duration: 3000,
+  cuePoints: [0, 0.2, 0.4, 0.6, 0.8, 1],
+  keyFrames: [0, 10, 0, 50, 0, 255],
+  onstop: function() {
+    console.log("Animation stopped");
+  }
+});
+});
+</pre>
+                        </code>
+            </section>
+
+            <section>
+                <p>Reference</i>
+                </p><br>
+                <a href="http://johnny-five.io/api/led/">LED API</a><br>
+                <a href="http://johnny-five.io/api/animation/#segment-properties">Animation API</a><br>
+                <a href="http://johnny-five.io/api/">Full API</a>
+            </section>
+            <section data-background-image="img/lcd.png">
+            </section>
+            <section>
+                To wire your LCD screen, connect the following pins:
+                <br><br>
+                <ul>
+                    <li>LCD RS pin to digital pin 12</li>
+                    <li>LCD Enable pin to digital pin 11</li>
+                    <li>LCD D4 pin to digital pin 5</li>
+                    <li>LCD D5 pin to digital pin 4</li>
+                    <li>LCD D6 pin to digital pin 3</li>
+                    <li>LCD D7 pin to digital pin 2</li><br> Additionally, wire a 10k pot to +5V and GND, with it's
+                    wiper
+                    (output) to LCD screens VO pin (pin3). A 220 ohm resistor is used to power the backlight of the
+                    display,
+                    usually on pin 15 and 16 of the LCD connector
+            </section>
+            <section>
+                <img src="img/lcd.png"><br>
+            </section>
+            <section>
+                <img src="img/hopper.jpg"><br>
+            </section>
+            <section>
+                Run HelloWorldLCD
+            </section>
+            <section>
+                Run SerialDisplay - Open serial monitor and pass some data
+            </section>
+            <section>
+                <a href="https://www.arduino.cc/en/Reference/LiquidCrystal">Arduino Liquid Crystal Display Library</a>
+            </section>
+            <section>
+                <h3>Johnny Five Examples</h3>
+                <a href="#" class="navigate-down">
+                </a>
+            </section>
+            <section>
+                <h3>Upload Firmata to Arduino</h3>
+            </section>
+            <section>
+                <h3>j5_lcd_weather</h3><br>
+                <h3>npm install</h3><br>
+                <h3>node app.js</h3>
+            </section>
+            <section>
+                <h3>j5_lcd_bart</h3><br>
+                <h3>npm install</h3><br>
+                <h3>node app.js</h3>
+            </section>
+            <section>
+                <a href="http://opensoundcontrol.org/introduction-osc">Introduction to Open Sound Control</a>
+            </section>
+            <section>
+                <a href="https://www.npmjs.com/package/node-osc">https://www.npmjs.com/package/node-osc</a>
+            </section>
+            <section>
+                <h3>Let's Combine Express, Websockets and OSC</h3>
+                <img src="img/osc.png" height="500">
+                <a href="#" class="navigate-down">
+                </a>
+            </section>
+            <section>
+                <h3>Set your phone and laptop to wifi 'extreme'</h3>
+                <br>
+                <h3>Password 'extreme!'</h3>
+            </section>
+            <section>
+                <h3>Open your system preferences, the click the network icon</h3>
+                <img src="img/compip.png" height="500">
+            </section>
+            <section>
+                <img src="img/touchosc1.png" height="600">
+            </section>
+            <section>
+                <img src="img/touchosc2.png" height="600">
+            </section>
+            <section>
+                <h3>Choose the simple layout in TouchOSC app</h3>
+                <img src="img/basic.png" height="500">
+            </section>
+            <section>
+                <h3>CD osc_basic in the code folder</h3>
+                <h3>run npm install</h3>
+                <h3>run 'node app.js</h3>
+            </section>
+            <section>
+                <h3>CD OSC in the code folder</h3>
+                <h3>run npm install</h3>
+                <h3>run 'node app.js</h3>
+            </section>
+            <section>
+                <h3>Choose a layout</h3>
+                <h3>And program to talk to your page</h3>
+            </section>
+            <section>
+                <h3>Now try osc_fancy</h3>
+                <h3>run npm install</h3>
+                <h3>run 'node app.js</h3>
+            </section>
+            <section>
+                <h3>Now try osc_sound</h3>
+                <h3>run npm install</h3>
+                <h3>run 'node app.js</h3>
+            </section>
+            <section>
+                <h3>Now try osc_p5js</h3>
+                <h3>run npm install</h3>
+                <h3>run 'node app.js</h3>
+            </section>
+        </section>
+
+        <section>
+            <h3>FaceOSC</h3>
+            <img src="img/faceosc.png" height="500">
+            <h3>try faceosc</h3>
+            <a href="https://github.com/kylemcdonald/ofxFaceTracker/releases">Download</a>
+            <a href="#" class="navigate-down">
+            </a>
+        </section>
+
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <!--     <script src="js/p5.js" type="text/javascript"></script>
+    <script src="js/p5.dom.js" type="text/javascript"></script>
+    <script src="js/p5.sound.js" type="text/javascript"></script>
+    <script src="sketch.js" type="text/javascript"></script> -->
+    <script>
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'convex', // none/fade/slide/convex/concave/zoom
+
+            // Optional reveal.js plugins
+            dependencies: [{
+                src: 'lib/js/classList.js',
+                condition: function() {
+                    return !document.body.classList;
+                }
+            }, {
+                src: 'plugin/markdown/marked.js',
+                condition: function() {
+                    return !!document.querySelector('[data-markdown]');
+                }
+            }, {
+                src: 'plugin/markdown/markdown.js',
+                condition: function() {
+                    return !!document.querySelector('[data-markdown]');
+                }
+            }, {
+                src: 'plugin/highlight/highlight.js',
+                async: true,
+                condition: function() {
+                    return !!document.querySelector('pre code');
+                },
+                callback: function() {
+                    hljs.initHighlightingOnLoad();
+                }
+            }, {
+                src: 'plugin/zoom-js/zoom.js',
+                async: true
+            }, {
+                src: 'plugin/notes/notes.js',
+                async: true
+            }]
+        });
+    </script>
+</body>
+
+</html>
