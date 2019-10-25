@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>ESP32 Touch Workshop</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css" id="theme">
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+    <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+</head>
+
+<body>
+    <div class="reveal">
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section data-background="img/72-points-mesh.svg" data-background-repeat="repeat" data-background-size="100px" data-background-transition="zoom">
+                <figure>
+                    <h2 class="intro">ESP32 Touch Workshop</h2 class="intro">
+                    <h2 class="intro">ESP32 Touch Workshop</h2 class="intro">
+                    <h2 class="intro">ESP32 Touch Workshop</h2 class="intro">
+                    <h2 class="intro">ESP32 Touch Workshop</h2 class="intro">
+                </figure>
+            </section>
+            <section data-background="img/72-points-mesh.svg" data-background-repeat="repeat" data-background-size="90px" data-background-transition="zoom">
+                <p>Grab the code here:
+                    <a href="https://bit.ly/2KSALv4">https://bit.ly/2KSALv4</a>
+                </p>
+            </section>
+            <section data-background="img/72-points-mesh.svg" data-background-repeat="repeat" data-background-size="80px" data-background-transition="zoom">
+                <ul>
+                    <h3>Topics for Today:</h3>
+                    <li class="fragment">Introduction to the esp32</li>
+                    <li class="fragment">Prototyping a touch interface</li>
+                    <li class="fragment">Introduction to OSC</li>
+                    <li class="fragment">Interfacing with a Webpage</li>
+                </ul>
+            </section>
+            <section>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/RG5Fi-eCLbc" frameborder="0" allow="autoplay; encrypted-media"
+                    allowfullscreen></iframe>
+            </section>
+            <section>
+                <p>The ESP32</p>
+                <img src="img/esp32.jpg" height="400">
+            </section>
+            <section>
+                <p>ESP32 Pinout</p>
+                <img src="img/esp32pinout.jpg" height="400">
+            </section>
+            <section>
+                <p>Install This Driver</p>
+                <a href="https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers">Here</a>
+            </section>
+            <section>
+                <p>Open the Arduino IDE</p>
+            </section>
+            <section>
+                <h3>Testing the board:</h3>
+                <li>Open the Arduino IDE</li>
+                <li>Under the tools menu set the board to ESP32 and the port to cu.SLAB_USBtoUART</li>
+                <img src="img/tools.png" height="400">
+            </section>
+            <section>
+                <h3>Testing the board:</h3>
+                <li>Open the Blink program from the code folder</li>
+                <li>Upload the program by hitting the arrow in the upper left corner</li>
+                <img src="img/blink.png" height="400">
+            </section>
+
+            <section>
+                <h3>Testing the wifi:</h3>
+                <li>Open the SimpleWiFiServer program form the code folder</li>
+                <li>Change lines 30 and 31 to "Gray Area Incubator" and "grandstand</li>
+                <li>Upload the program by hitting the arrow in the upper left corner</li>
+            </section>
+            <section>
+                <h3>Testing the wifi:</h3>
+                <li>Once uploaded open the serial monitor in the Arduino IDE(Magnifying glass icon upper right)</li>
+                <li>set the BAUD rate to 115200</li>
+                <li>Hit the black reset button on the ESP32, the serial monitor will show the ESP32's IP address</li>
+                <li>Enter this IP address in your Web Browser</li>
+                <img src="img/serial1.png" height="200">
+            </section>
+            <section>
+                <p>Building out a basic touch interface</p>
+                <img src="img/touch1.png" height="400">
+            </section>
+            <section>
+                <p>Style 1</p>
+                <img src="img/style1.jpg" height="400">
+            </section>
+            <section>
+                <p>Style 2</p>
+                <img src="img/style2.jpg" height="400">
+            </section>
+
+            <section>
+                <p>Make your own</p>
+                <img src="img/condpaint.jpeg" height="400">
+            </section>
+
+            <section data-background="img/72-points-mesh.svg" data-background-repeat="repeat" data-background-size="80px" data-background-transition="zoom">
+                <ul>
+                    <h3>Steps:</h3>
+                    <li class="fragment">Get 6 pieces of copper tape</li>
+                    <li class="fragment">Seperate 6 jumper wires and solder them to the copper tape pads</li>
+                    <li class="fragment">Attach each copper tape pad to a section of the acrylic frame</li>
+                    <li class="fragment">Paint over the copper tape with conductive paint(optional)</li>
+                </ul>
+            </section>
+
+            <section>
+                <p>How to solder</p>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/f95i88OSWB4" frameborder="0" allow="autoplay; encrypted-media"
+                    allowfullscreen></iframe>
+            </section>
+            <section>
+                <p>Hold the soldering iron tip on the wire and tape</p>
+                <img src="img/solder1.png" height="400">
+            </section>
+            <section>
+                <p>after about 20 seconds flow some solder on to make a connection</p>
+                <img src="img/solder2.png" height="400">
+            </section>
+
+            <section>
+                <p>Connect some touch Pins to 14,32,15,33,27,12</p>
+                <img src="img/bb1.png" height="400">
+            </section>
+            <section data-background="img/72-points-mesh.svg" data-background-repeat="repeat" data-background-size="80px" data-background-transition="zoom">
+                <ul>
+                    <h3>Testing the touch pads:</h3>
+                    <li class="fragment">Upload TouchRead_Serial</li>
+                    <li class="fragment">Open the serial port to and set the baud to 115200</li>
+                    <li class="fragment">Test touching the copper pads</li>
+                </ul>
+            </section>
+            <section>
+                <p>Conductive paint</p>
+                <a href="https://www.bareconductive.com/">https://www.bareconductive.com/</a>
+            </section>
+            <section>
+                <img src="img/conductive-wallpaper-2.jpg" height="400">
+            </section>
+
+            <section>
+                <p>For today painting is an optinal step but encouraged. The point is to show how to bridge the wires with conductive
+                    paint using the copper as a bridge.</p>
+            </section>
+
+            <section>
+                <p>Let the paint dry. We will come back to this in a bit</p>
+            </section>
+            <section>
+                <a href="http://opensoundcontrol.org/introduction-osc">Introduction to Open Sound Control(OSC)</a>
+            </section>
+
+            <section>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/bTdFEMMBKcU" frameborder="0" allow="autoplay; encrypted-media"
+                    allowfullscreen></iframe>
+            </section>
+
+            <section>
+                <ul>
+                    <h3>The ESP32 can send and recieve OSC messages:</h3>
+                    <li class="fragment">We need to install the OSC Library for Arduino</li>
+                    <li class="fragment">Go to Sketch-> Include Library -> Library Manager</li>
+                    <li class="fragment">Search for OSC. Install the one listed in the image below</li>
+                    <img src="img/osc.png" height="200">
+                </ul>
+            </section>
+
+            <section>
+                <ul>
+                    <h3>The ESP32 can send and recieve OSC messages:</h3>
+                    <li class="fragment">Open ESP32sendMessage from the code folder</li>
+                    <li class="fragment">Change lines 19 and 20 to "Gray Area Incubator" and "grandstand"</li>
+                    <li class="fragment">Find out your computer IP address. On Mac Option Click your Wifi Icon. On windows run "ipconfig /all"
+                        from the command prompt</li>
+                    <li class="fragment">Enter your computers IP seperated by commas on line 23</li>
+                    <li class="fragment">Upload the program by hitting the arrow in the upper left corner</li>
+                </ul>
+            </section>
+
+            <section>
+                <ul>
+                    <h3>The ESP32 can send and recieve OSC messages:</h3>
+                    <li class="fragment">The ESP32 is sending OSC messages over and over</li>
+                    <li class="fragment">We need to run a program on our computer to recieve them</li>
+                    <li class="fragment">I've written a simple program in Javascript/NodeJS to recieve them</li>
+                    <li class="fragment">From the code folder drag the OSC program on to your text editor</li>
+                    <li class="fragment">Also open the OSC folder in the terminal by typing cd space, drag the folder onto the terminal and hit
+                        return
+                    </li>
+                    <li class="fragment">Lets look at the code</li>
+                </ul>
+            </section>
+
+            <section>
+                <ul>
+                    <h3>To run this program from the terminal:</h3>
+                    <li class="fragment">type npm install(this installs the node-osc library. we only need to do this once)</li>
+                    <li class="fragment">type node index.js(this runs the program)</li>
+                    <li class="fragment">You should have the result in the image below</li>
+                    <img src="img/osc2.png" height="200">
+                </ul>
+            </section>
+
+            <section>
+                <ul>
+                    <h3>Hint:</h3>
+                    <li class="fragment">OSC libraries are avaiable for most programming Languages, C++, Python, Java etc..</li>
+                    <li class="fragment">We are using
+                        <a href="https://github.com/MylesBorins/node-osc">this javascript library</a>
+                    </li>
+                    <li class="fragment">OSC messages are sent in the form of an array</li>
+                    <li class="fragment">The first index of the array is known as the address</li>
+                    <li class="fragment">[ '/test', 'hello, osc.' ] (/test is the addess, hello, osc. is the data)</li>
+                </ul>
+            </section>
+
+            <section>
+                <ul>
+                    <h3>Lets combine the touch code with OSC messages:</h3>
+                    <li class="fragment">Open ESP32TouchOSC from the code folder</li>
+                    <li class="fragment">Change lines 19 and 20 to "Gray Area Incubator" and "grandstand"</a>
+                    </li>
+                    <li class="fragment">Find out your computer IP address. On Mac Option Click your Wifi Icon. On windows run "ipconfig /all"
+                        from the command prompt</li>
+                    <li class="fragment">Enter your computers IP seperated by commas on line 23</li>
+                    <li class="fragment">Upload the program by hitting the arrow in the upper left corner</li>
+                </ul>
+            </section>
+
+            <section>
+                <ul>
+                    <h3>Lets combine the touch code with OSC messages:</h3>
+                    <li class="fragment">Have a look at the terminal where the OSC program is running</li>
+                    <li class="fragment">Touch a few of the pads and look for incoming messages</a>
+                    </li>
+                    <li class="fragment">Messages will look like this: [ '/touch', '6' ]</a>
+                    </li>
+                    <li class="fragment">Let's take a second to make sure everyone has this running</a>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <ul>
+                    <h3>Now lets pass the touch data into a weppage to make it interactive:</h3>
+                    <li class="fragment">Go to the terminal where the OSC program is running</li>
+                    <li class="fragment">Hit CTRL+C twice (this quits the current program)</a>
+                    </li>
+                    <li class="fragment">type cd + space and drag the osc_webpage foler onto the terminal</a>
+                    </li>
+                    <li class="fragment">type 'npm install' return and then 'node app.js' </a>
+                    </li>
+                    <li class="fragment">Open http://localhost:3000 in the browser and touch some pads</a>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <ul>
+                    <h3>Lets walkthrough this code:</h3>
+                    <li class="fragment">Drag osc_webpage onto your text editor</li>
+                </ul>
+            </section>
+
+            <section>
+                <ul>
+                    <h3>Hint:</h3>
+                    <li class="fragment">The following libraries are used:</li>
+                    <li class="fragment">We are using
+                        <a href="https://github.com/MylesBorins/node-osc">node-osc allows us to recieve OSC messages</a>
+                    </li>
+                    <li class="fragment">
+                        <a href="https://expressjs.com/">Express helps us build a webserver</a>
+                    </li>
+                    <li class="fragment">
+                        <a href="https://socket.io/">Socket.io lets us use websockets to pass data to a webpage</a>
+                    </li>
+                    <li class="fragment">
+                        <a href="https://jquery.com/">Jquery allows us to manipulate elemnts on a webpage easily</a>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <ul>
+                    <h3>Hint:</h3>
+                    <li class="fragment">You dont have to understand all of this to run this code!</li>
+                    <li class="fragment">All you need to know is cd osc_webpage and 'node app.js'</li>
+                    <li class="fragment">To alter the project you just edit the index.html</li>
+                    <li class="fragment">The code in app.js will never change it just passes the OSC message up to the webpage</li>
+                </ul>
+            </section>
+
+            <section>
+                <ul>
+                    <h3>Lets try something with sound and images:</h3>
+                    <li class="fragment">Go to the terminal where the OSC program is running</li>
+                    <li class="fragment">Hit CTRL+C twice (this quits the current program)</a>
+                    </li>
+                    <li class="fragment">type cd + space and drag the osc_sound folder onto the terminal</a>
+                    </li>
+                    <li class="fragment">type 'npm install' return and then 'node app.js' </a>
+                    </li>
+                    <li class="fragment">Open http://localhost:3000 in the browser and touch some pads</a>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <ul>
+                    <h3>Hint:</h3>
+                    <li class="fragment">Try swapping out the images and sounds</li>
+                    <li class="fragment">The are located in the public folder</li>
+                </ul>
+            </section>
+
+            <section>
+                <ul>
+                    <h3>Lets try something with sound and images and projection mapping:</h3>
+                    <li class="fragment">Go to the terminal where the OSC program is running</li>
+                    <li class="fragment">Hit CTRL+C twice (this quits the current program)</a>
+                    </li>
+                    <li class="fragment">type cd + space and drag the osc_ws_maptastic folder onto the terminal</a>
+                    </li>
+                    <li class="fragment">type 'npm install' return and then 'node app.js' </a>
+                    </li>
+                    <li class="fragment">Open http://localhost:3000 in the browser and touch some pads</a>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <ul>
+                    <h3>Hint:</h3>
+                    <li class="fragment">
+                        <a href="https://github.com/glowbox/maptasticjs">This uses the MaptasticJS library</a>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <ul>
+                    <h3>Lets try something with sound and video and projection mapping:</h3>
+                    <li class="fragment">Go to the terminal where the OSC program is running</li>
+                    <li class="fragment">Hit CTRL+C twice (this quits the current program)</a>
+                    </li>
+                    <li class="fragment">type cd + space and drag the osc_ws_maptastic_video folder onto the terminal</a>
+                    </li>
+                    <li class="fragment">type 'npm install' return and then 'node app.js' </a>
+                    </li>
+                    <li class="fragment">Open http://localhost:3000 in the browser and touch some pads</a>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <ul>
+                    <h3>Wire up the accelerometer:</h3>
+                    <img src="img/ad32.png" height="200">
+                </ul>
+            </section>
+
+            <section>
+                <ul>
+                    <h3>Upload adxl345_osc in Arduino</h3>
+                </ul>
+            </section>
+            <section>
+                <ul>
+                    <h3>Lets try something with the accelerometer</h3>
+                    <li class="fragment">Go to the terminal where the OSC program is running</li>
+                    <li class="fragment">Hit CTRL+C twice (this quits the current program)</a>
+                    </li>
+                    <li class="fragment">type cd + space and drag the osc_threejs folder onto the terminal</a>
+                    </li>
+                    <li class="fragment">type 'npm install' return and then 'node app.js' </a>
+                    </li>
+                    <li class="fragment">Open http://localhost:3000 in the browser and touch some pads</a>
+                    </li>
+                </ul>
+            </section>
+
+
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'convex', // none/fade/slide/convex/concave/zoom
+
+            // Optional reveal.js plugins
+            dependencies: [{
+                src: 'lib/js/classList.js',
+                condition: function () {
+                    return !document.body.classList;
+                }
+            }, {
+                src: 'plugin/markdown/marked.js',
+                condition: function () {
+                    return !!document.querySelector('[data-markdown]');
+                }
+            }, {
+                src: 'plugin/markdown/markdown.js',
+                condition: function () {
+                    return !!document.querySelector('[data-markdown]');
+                }
+            }, {
+                src: 'plugin/highlight/highlight.js',
+                async: true,
+                condition: function () {
+                    return !!document.querySelector('pre code');
+                },
+                callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
+            }, {
+                src: 'plugin/zoom-js/zoom.js',
+                async: true
+            }, {
+                src: 'plugin/notes/notes.js',
+                async: true
+            }]
+        });
+    </script>
+</body>
+
+</html>
